@@ -24,15 +24,18 @@ def build_league():
     yes = [player for player in player_list if player[2] == 'YES']
     no = [player for player in player_list if player[2] == 'NO']
 
+    len_yes = int(len(yes) / 3)
+    len_no = int(len(no) / 3)
+
     # assign players to teams, iterate through teams
     for team in teams.values():
         # assign players with experience to teams
-        while len(team) < int(len(yes) / 3):
+        while len(team) < len_yes:
             team.append(yes[0])
             del yes[0]
 
         # assign players without experience to teams
-        while len(team) < (int(len(yes) / 3) + int(len(no) / 3)):
+        while len(team) < (len_yes + len_no):
             team.append(no[0])
             del no[0]
 
